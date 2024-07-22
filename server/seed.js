@@ -1,7 +1,6 @@
 const {client, createTables,createProduct, createUser, createFavorites,fetchUsers, fetchFavorites, fetchProducts,destroyFavorites} = require('./db')
 
 const init = async () => {
-    console.log("Connecting to the database");
     await client.connect();
     console.log("Connected to the database");
 
@@ -9,9 +8,9 @@ const init = async () => {
     console.log("Tables created");
 
     const [badbunny, feid, karolg, album, sunnies, shirts] = await Promise.all([
-        createUser({username: "Bad Bunny"}),
-        createUser({username: "Ferxxo"}),
-        createUser({username: "Karol G"}),
+        createUser({username: "Bad Bunny", password:"bbunny"}),
+        createUser({username: "Ferxxo" , password:"feid"}),
+        createUser({username: "Karol G",  password:"bichota"}),
         createProduct({name: "Un Verano Sin Ti"}),
         createProduct({name: "Green Sunglasses"}),
         createProduct({name: "Bichota T-Shirt"}),

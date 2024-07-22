@@ -1,4 +1,4 @@
-const {client, createFavorites,fetchUsers, fetchFavorites, fetchProducts,destroyFavorites} = require('./db')
+const {client, createFavorites,fetchUsers, fetchFavorites, fetchProducts,destroyFavorites} = require("./db")
 //create express server
 const express = require('express');
 const server = express();
@@ -11,7 +11,7 @@ server.use(express.json());
 
 //ROUTES
 //GET /api/users - returns array of users
-server.get('/api/users', async(req,res,next) => {
+server.get("/api/users", async(req,res,next) => {
     try{
         res.send(await fetchUsers());
     }
@@ -22,7 +22,7 @@ server.get('/api/users', async(req,res,next) => {
 
 
 //GET /api/products - returns an array of products
-server.get('/api/products', async(req,res,next) => {
+server.get("/api/products", async(req,res,next) => {
     try{
         res.send(await fetchProducts());
     }
@@ -33,7 +33,7 @@ server.get('/api/products', async(req,res,next) => {
 
 
 //GGET /api/users/:id/favorites - returns an array of favorites for a user
-server.get('/api/users/:id/favorites', async(req,res,next) => {
+server.get("/api/users/:id/favorites", async(req,res,next) => {
     try{
         res.send(await fetchFavorites({user_id:req.params.id}));
     }
@@ -44,7 +44,7 @@ server.get('/api/users/:id/favorites', async(req,res,next) => {
 
 //POST /api/users/:id/favorites - payload: a product_id 
 //returns the created favorite with a status code of 201
-server.post('/api/users/:id/favorites', async(req,res,next) => {
+server.post("/api/users/:id/favorites", async(req,res,next) => {
     try{
         res.status(201).send(
             await createFavorites({
@@ -61,7 +61,7 @@ server.post('/api/users/:id/favorites', async(req,res,next) => {
 
 
 //DELETE /api/users/:userId/favorites/:id - deletes a favorite for a user, returns nothing with a status code of 204
-server.delete('/api/users/:userId/favorites/:id', async(req,res,next) => {
+server.delete("/api/users/:userId/favorites/:id", async(req,res,next) => {
     try{
         await destroyFavorites({id: req.params.id, user_id: req.params.userId});
         res.sendStatus(204);
